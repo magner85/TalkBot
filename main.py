@@ -1,17 +1,12 @@
-import asyncio
+import discord
 import asyncio
 import time
 import os
 import json
-import asyncio
 import Talker
-import parametrs
 import random
 import re
 import parametrs
-import asyncio
-import Talker
-import os
 
 class MsgParser:
     prefix = '$'
