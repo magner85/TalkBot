@@ -165,7 +165,7 @@ class MsgParser:
                         t = t[:val.start()] + t[val.end():]
                 if t != '':
                     name = message.author.name
-                    while os.listdir('tmp').count(name):
+                    while os.listdir(os.path.abspath('tmp')).count(name):
                         name += '!'
                     out_par.text = t
                     Talker.Talker(out_par).run(name)
@@ -448,7 +448,7 @@ def download(url:str, name:str):
     return True
 
 def all_files():
-    return os.listdir('saved')
+    return os.listdir(os.path.abspath('saved'))
 
 def load_binding():
     try:
