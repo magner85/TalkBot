@@ -1,5 +1,4 @@
 discord.py
-os
 ffmpeg
 flask
 gunicorn
