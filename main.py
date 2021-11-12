@@ -1,5 +1,5 @@
 import asyncio
-import discord
+import discord.py
 import asyncio
 import time
 import os
@@ -29,7 +29,7 @@ class MsgParser:
     dc = []
     dctext = []
 
-    def __init__(self, message:message, client:MyClient):
+    def __init__(self, message:discord.message, client:MyClient):
         text = message.content
         if text[0] == self.prefix:
             text = text[1:]
@@ -114,14 +114,14 @@ def append_handler(parser:MsgParser.MsgParser):
     parser.add_handler(voices, 'voices')
 
     async def off(bot, message):
-        if message.author.name == 'barpacha':
+        if message.author.name == 'barpacha' || 'Magner85':
             await bot.logout()
             print('logout')
     parser.add_handler(off, 'off')
 
     async def help(bot, message):
         text = '''Бот для проигрыша фраз и озвучки текста. НЕ ДЛЯ МУЗЫКИ!
-Бот работает только когда barpacha онлайн!
+Бот работает на облаках
 
 Добавить фразу:
 1) Отправить файл .mp3/.wav в личку боту
