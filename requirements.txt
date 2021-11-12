@@ -1,5 +1,5 @@
 discord.py
-DiscordApi
+DiscordApi.py
 ffmpeg
 flask
 gunicorn
