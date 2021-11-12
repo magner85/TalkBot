@@ -191,7 +191,7 @@ class MsgParser:
             except:
                 pass
 
-def append_handler(parser:MsgParser):
+def append_handler(MsgParser.MsgParser):
     async def stop(bot, message):
         bot.playing[message.author.voice.channel.id] = None
         await message.delete()
