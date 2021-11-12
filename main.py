@@ -29,7 +29,7 @@ class MsgParser:
     dc = []
     dctext = []
 
-    def __init__(self, discord.message, client:MyClient):
+    def __init__(self, message:message, client:MyClient):
         text = message.content
         if text[0] == self.prefix:
             text = text[1:]
