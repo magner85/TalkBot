@@ -3,7 +3,6 @@ import asyncio
 import time
 import os
 import json
-import Talker
 import random
 import re
 import parametrs
