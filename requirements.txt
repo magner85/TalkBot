@@ -2,3 +2,4 @@ discord.py
 ffmpeg
 flask
 gunicorn
+requests
