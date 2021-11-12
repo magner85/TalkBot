@@ -13,8 +13,6 @@ import parametrs
 import asyncio
 import Talker
 import os
-import DiscordApi
-
 
 class MsgParser:
     prefix = '$'
