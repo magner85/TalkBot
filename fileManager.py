@@ -1,5 +1,5 @@
 import os
-import requests
+#import requests
 import json
 
 def delete_file(file:str):
