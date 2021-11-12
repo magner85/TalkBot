@@ -552,7 +552,7 @@ def del_vol(name:str):
     return False
 
 async def main():
-    bot = MyClient('NzMzMDA1MDYyNDQ3ODI1MDA3.Xw82KQ.zs0WjdpyyyoN6chxt5Euhu1nTno', discord_command.default_handler)
+    bot = MyClient('NzMzMDA1MDYyNDQ3ODI1MDA3.Xw82KQ.zs0WjdpyyyoN6chxt5Euhu1nTno', default_handler)
     await bot.start()
     print('ready')
     while True:
