@@ -9,7 +9,6 @@ import Talker
 import parametrs
 import random
 import re
-import discord_command
 import parametrs
 import asyncio
 import Talker
