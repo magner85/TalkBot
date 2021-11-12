@@ -1,0 +1,1 @@
+start "" "D:\pars v2.0\dis\Scripts\python.exe" "D:\disbot\3.0\main.py"
