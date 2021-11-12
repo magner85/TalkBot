@@ -114,7 +114,7 @@ def append_handler(parser:MsgParser.MsgParser):
     parser.add_handler(voices, 'voices')
 
     async def off(bot, message):
-        if message.author.name == 'barpacha' || 'Magner85':
+        if message.author.name == 'barpacha' or message.author.name == 'Magner85':
             await bot.logout()
             print('logout')
     parser.add_handler(off, 'off')
