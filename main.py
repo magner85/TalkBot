@@ -29,7 +29,7 @@ class MsgParser:
     dc = []
     dctext = []
 
-    def __init__(self, message:discord.message, client:DiscordApi.MyClient):
+    def __init__(self, message:discord.message, client:MyClient):
         text = message.content
         if text[0] == self.prefix:
             text = text[1:]
@@ -341,11 +341,6 @@ async def default_handler(bot, message):
             await bot.append_playlist(channel, f)
         await message.delete()
 
-
-
-
-
-
 def delete_file(file:str):
     os.remove(file)
 
@@ -562,7 +557,7 @@ class MyClient:
         self.playing[channel.id] = None
 
 async def main():
-    bot = DiscordApi.MyClient('NzMzMDA1MDYyNDQ3ODI1MDA3.Xw82KQ.zs0WjdpyyyoN6chxt5Euhu1nTno', discord_command.default_handler)
+    bot = MyClient('NzMzMDA1MDYyNDQ3ODI1MDA3.Xw82KQ.zs0WjdpyyyoN6chxt5Euhu1nTno', discord_command.default_handler)
     await bot.start()
     print('ready')
     while True:
