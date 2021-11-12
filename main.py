@@ -421,7 +421,7 @@ async def default_handler(bot, message):
         else:
             await bot.send(message.channel, 'имя занято', delete_after=None)
     else:
-        m = MsgParser.MsgParser(message, bot)
+        m = MsgParser(message, bot)
         if not m.is_talk:
             return
         if message.author.voice is None and m.channel is None:
