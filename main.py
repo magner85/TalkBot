@@ -198,7 +198,7 @@ def append_handler(parser:MsgParser):
     parser.add_handler(stop, 'stop')
 
     async def voices(bot, message):
-        voices = Talker.Talker(parametrs.Talker()).get_voices()
+        voices = Talker(parametrs.Talker()).get_voices()
         text = ''
         for i in voices:
             text += i + '\n'
