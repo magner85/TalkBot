@@ -168,7 +168,7 @@ class MsgParser:
                     while os.listdir(os.path.abspath('tmp')).count(name):
                         name += '!'
                     out_par.text = t
-                    Talker.Talker(out_par).run(name)
+                    Talker(out_par).run(name)
                     self.file_mas.append('tmp\\'+name)
                 if filename is None:
                     break
