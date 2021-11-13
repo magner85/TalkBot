@@ -552,7 +552,7 @@ def del_vol(name:str):
     return False
 
 class Talker:
-    def __init__(self, TalkerSet: parametrs.Talker, path :str = 'balcon.exe'):
+    def __init__(self, TalkerSet: parametrs.Talker, path :str = os.path.abspath('balcon.exe')):
         self.path = path
         self.Talker_settings = TalkerSet
 
