@@ -91,8 +91,8 @@ class MyClient:
             PCM = discord.FFmpegPCMAudio(executable=self.ffmpeg, source=file)
             if file[:5] == 'saved':
                 name = file[6:]
-                if fileManager.find_vol(name) != None:
-                    PCM = discord.PCMVolumeTransformer(original=PCM, volume=fileManager.find_vol(name) / 50)
+                if find_vol(name) != None:
+                    PCM = discord.PCMVolumeTransformer(original=PCM, volume=find_vol(name) / 50)
             voice_channel.play(PCM,
                                 after=None)
             while voice_channel.is_playing():
@@ -103,7 +103,7 @@ class MyClient:
                     return
                 await asyncio.sleep(0.05)
             if file[:3] == 'tmp':
-                fileManager.delete_file(file)
+                delete_file(file)
             self.playlist[channel.id].pop(0)
         self.playing[channel.id] = None
 
@@ -172,7 +172,7 @@ class MsgParser:
                     self.file_mas.append('tmp\\'+name)
                 if filename is None:
                     break
-                for f in fileManager.all_files():
+                for f in all_files():
                     if f == filename:
                         self.file_mas.append('saved\\'+filename)
                         break
@@ -272,7 +272,7 @@ botsay - saved для Магнера'''
     parser.add_handler(ping, '<:ping:798579897726926938>')
 
     async def saved(bot, message):
-        saved = fileManager.all_files()
+        saved = all_files()
         text = ''
         for i in saved:
             text += i + '\n'
@@ -312,11 +312,11 @@ botsay - saved для Магнера'''
         message = await bot.wait_msg(message.author, 120)
         if message.content == '':
             return
-        if fileManager.all_files().__contains__(message.content):
-            fileManager.delete_file('saved\\' + message.content)
-            for bind in fileManager.load_binding():
+        if all_files().__contains__(message.content):
+            delete_file('saved\\' + message.content)
+            for bind in load_binding():
                 if bind['name'] == message.content:
-                    fileManager.del_binding(bind['text'])
+                    del_binding(bind['text'])
                     break
             await bot.send(message.channel, 'удалено', delete_after=10)
     parser.add_handler(del_file, 'remove')
@@ -331,11 +331,11 @@ botsay - saved для Магнера'''
         message = await bot.wait_msg(message.author, 120)
         if message.content == '':
             return
-        if not fileManager.all_files().__contains__(message.content):
+        if not all_files().__contains__(message.content):
             return
         name_file = message.content
         await message.delete()
-        fileManager.upload_binding(text, name_file)
+        upload_binding(text, name_file)
         async def universal(bot, message):
             message.content = r'$[f ' + name_file + ']'
             await default_handler(bot, message)
@@ -347,7 +347,7 @@ botsay - saved для Магнера'''
         message = await bot.wait_msg(message.author, 120)
         if message.content == '':
             return
-        if fileManager.del_binding(message.content) == True:
+        if del_binding(message.content) == True:
             await bot.send(message.channel, 'удалено', delete_after=5)
         await message.delete()
     parser.add_handler(del_binding, 'dbind')
@@ -355,7 +355,7 @@ botsay - saved для Магнера'''
     async def print_binding(bot, message):
         await message.delete()
         msg = ''
-        for bind in fileManager.load_binding():
+        for bind in load_binding():
             msg += bind['text'] + ' ' + bind['name'] + '\n'
         await bot.send(message.channel, msg, delete_after=120)
     parser.add_handler(print_binding, 'pbind')
@@ -382,9 +382,9 @@ botsay - saved для Магнера'''
         if not (int(message.content) >= 0 and int(message.content) <= 100):
             return
         if int(message.content) == 50:
-            fileManager.del_vol(file)
+            del_vol(file)
         else:
-            fileManager.upload_vol(file, int(message.content))
+            upload_vol(file, int(message.content))
         await message.delete()
     parser.add_handler(set_vol, 'setvol')
 
@@ -394,18 +394,18 @@ botsay - saved для Магнера'''
         await message.delete()
         if message.content == '':
             return
-        file = fileManager.find_vol(message.content)
+        file = find_vol(message.content)
         if file == None:
-            if fileManager.all_files().__contains__(message.content):
+            if all_files().__contains__(message.content):
                 await bot.send(message.channel, '50%', delete_after=30)
         else:
             await bot.send(message.channel, str(file) + '%', delete_after=30)
     parser.add_handler(print_vol, 'pvol')
 
 
-    for bind in fileManager.load_binding():
+    for bind in load_binding():
         async def universal(bot, message):
-            message.content = r'$[f ' + fileManager.find_binding(message.content) + ']'
+            message.content = r'$[f ' + find_binding(message.content) + ']'
             await default_handler(bot, message)
         parser.add_handler(universal, bind['text'])
     return parser
@@ -416,7 +416,7 @@ async def default_handler(bot, message):
     if message.channel.type == discord.ChannelType.private:
         if len(message.attachments) == 0:
             return
-        if fileManager.download(message.attachments[0].url, message.content):
+        if download(message.attachments[0].url, message.content):
             await bot.send(message.channel, 'готово', delete_after=None)
         else:
             await bot.send(message.channel, 'имя занято', delete_after=None)
