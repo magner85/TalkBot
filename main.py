@@ -7,6 +7,7 @@ import random
 import re
 import parametrs
 import subprocess
+import requests
 
 class MyClient:
     dialog = []
